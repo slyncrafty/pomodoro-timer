@@ -69,6 +69,7 @@ function startTimer() {
       }
     } else {
       clearInterval(interval);
+      interval = null;
       timer.style.color = "black";
       timer.disabled = false;
       // console.log("time's up");
@@ -85,8 +86,22 @@ function stopTimer() {
 
 function resetTimer() {
   clearInterval(interval);
+  interval = null;
   timeLeft = initialTime;
   updateTimer();
   timer.style.color = "black";
   timer.disabled = false;
 }
+
+// Color Picker
+const bgColorPicker = document.getElementById('bg-color');
+const ftColorPicker = document.getElementById('font-color');
+
+bgColorPicker.addEventListener('input', () => {
+  document.body.style.backgroundColor=bgColorPicker.value;
+  timer.style.backgroundColor=bgColorPicker.value;
+});
+
+ftColorPicker.addEventListener('input', () => {
+  timer.style.color = ftColorPicker.value;
+})
