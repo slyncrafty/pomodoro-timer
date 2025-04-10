@@ -12,14 +12,20 @@ reset.addEventListener('click', resetTimer);
 let interval;
 let initialTime = 0, timeLeft = 0;
 
+window.addEventListener('DOMContentLoaded', () => {
+  timer.value = "25:00";
+  setTimer(); 
+});
+
 
 function parseTimeInput(input) {
   const regex = /^(\d{1,2}):([0-5]?\d)$/;
   const match = input.match(regex);
   if(!match){
     message.textContent = 'Invalid Time! Please Try Again.'
+    clearInterval(interval);
     return null;
-  } 
+  }
   [_, minutes, seconds] = match;
   minutes = parseInt(minutes, 10);
   seconds = parseInt(seconds, 10);
@@ -46,12 +52,13 @@ function setTimer(){
 
 function updateTimer(){
   timer.value = formatTime(timeLeft);
+  message.textContent = 'Focus!'; 
 }
 function startTimer() {
   if(interval) return;
   setTimer();
   timer.disabled = true;
-
+  message.textContent = 'Focus!'; 
   interval = setInterval(() => {
     if(timeLeft > 0){
       timeLeft--;
