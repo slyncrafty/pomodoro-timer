@@ -9,8 +9,8 @@ start.addEventListener('click', startTimer);
 stop.addEventListener('click', stopTimer);
 reset.addEventListener('click', resetTimer);
 
-let interval;
-let initialTime = 0, timeLeft = 0;
+let interval = null, endTime = null;
+let isRunning = false;
 
 window.addEventListener('DOMContentLoaded', () => {
   timer.value = "25:00";
@@ -55,24 +55,28 @@ function updateTimer(){
   message.textContent = 'Focus!'; 
 }
 function startTimer() {
-  if(interval) return;
+  if(isRunning) return;
   setTimer();
+  const now = Date.now();
+  endTime = now + timeLeft * 1000;
+  isRunning = true;
   timer.disabled = true;
   message.textContent = 'Focus!'; 
-  interval = setInterval(() => {
-    if(timeLeft > 0){
-      timeLeft--;
-      updateTimer();
 
-      if(timeLeft <= 3) {
-        timer.style.color = "red";
-      }
-    } else {
+  interval = setInterval(() => {
+    const currTime = Date.now();
+    timeLeft = Math.max(0, Math.round((endTime - currTime) / 1000));
+    updateTimer();
+    if(timeLeft <= 3) {
+      timer.style.color = "red";
+    }
+    if(timeLeft === 0){
       clearInterval(interval);
-      interval = null;
+      isRunning = false;
       timer.style.color = "black";
       timer.disabled = false;
       // console.log("time's up");
+      alertSound.play();
       message.textContent = 'Time is Up!'
     }
   }, 1000);
@@ -81,12 +85,14 @@ function startTimer() {
 function stopTimer() {
   clearInterval(interval);
   interval = null;
+  isRunning = false;
   timer.disabled = false;
 }
 
 function resetTimer() {
   clearInterval(interval);
   interval = null;
+  isRunning = false;
   timeLeft = initialTime;
   updateTimer();
   timer.style.color = "black";
@@ -105,3 +111,6 @@ bgColorPicker.addEventListener('input', () => {
 ftColorPicker.addEventListener('input', () => {
   timer.style.color = ftColorPicker.value;
 })
+
+// Alert Sound
+const alertSound = new Audio('sounds/Magic_Chime.mp3'); 
