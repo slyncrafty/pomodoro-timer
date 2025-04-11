@@ -25,10 +25,11 @@ html{
 .container {
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
-  max-width: 460px;
+  margin: 1em auto;
+  max-width: 420px;
+  min-width: 280px;
   text-align: center;
-  padding: 20px;
+  padding: 0.5em;
   font-family: "roboto", sans-serif;
 }
 
@@ -41,8 +42,15 @@ h1 {
 input.timer {
   border:none;
   text-align: center;
-  margin: 1em;
+  margin: 1em auto;
   font-size: 5em;
+  width: 100%;
+}
+@media (max-width: 420px) {
+  input.timer  {
+    font-size: 2.5em;
+    margin: 0.5em auto;
+  }
 }
 
 .color-control {
@@ -51,12 +59,23 @@ input.timer {
   justify-content: center;
   gap: 1em;
   font-size: 1em;
+  width: 100%;
+  margin-inline: auto;
 }
 
 .color-control label {
   display: flex;
+  justify-content:space-around;
   align-items: center;
-  gap: 1em;
+}
+
+.color-control input[type="color"] {
+  width: 60px;
+  height: 30px;
+  border: none;
+  border-radius: 2px;
+  background: none;
+  padding: 0;
 }
 
 button {
