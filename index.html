@@ -19,8 +19,12 @@
 	<body>
 		<div class="container">
 			<h1>🍅 Pomodoro Timer ⏰</h1>
-			<input class="timer" id="timer" type="text" placeholder="25:00">
-			<!-- <p class="timer" id="timer">25:00</p> -->
+			<div class="time-picker">
+				<input class="timer" id="focus-time" type="text" placeholder="25:00" value="25:00">
+			</div>
+			<div class="time-picker">
+				<input class="timer" id="break-time" type="text" placeholder="05:00" value="05:00">
+			</div>
 			<p class="message" id="message">Focus!</p>
 			<div class="button-wrapper">
 				<button id="start">Start</button>
@@ -36,6 +40,7 @@
 					<input type="color" id="font-color" value="#000000">
 				</label>
 			</div>
+			<button id="default-btn">Default Setup</button>
 		</div>
 		<script type="text/javascript" src="js/main.js"></script>
 	</body>

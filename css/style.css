@@ -9,6 +9,7 @@
 :root {
   --primary-color: #003D23; 
   --accent-color: #A6979C;
+  --default-color: seashell;
 }
 /******************************************
 /* LAYOUT
@@ -39,18 +40,31 @@ h1 {
   color:rgb(64, 51, 79);
 }
 
+.time-picker {
+  display: flex;
+  flex-direction: horizontal;
+  justify-content: center;
+  align-items: center;
+}
+
 input.timer {
   border:none;
   text-align: center;
-  margin: 1em auto;
+  margin: 0 auto;
   font-size: 5em;
-  width: 100%;
+  width: 60%;
 }
 @media (max-width: 420px) {
   input.timer  {
     font-size: 2.5em;
     margin: 0.5em auto;
   }
+}
+
+#break-time {
+  font-size: 3em;
+  background-color: var(--default-color);
+  opacity: 50%;
 }
 
 .color-control {
@@ -106,3 +120,19 @@ button:hover{
 /******************************************
 /* ADDITIONAL STYLES
 /*******************************************/
+@keyframes blink {
+  0%, 100% { background-color: inherit; }
+  50% { background-color: rgba(255, 0, 0, 0.08) }
+}
+
+.blink-bg {
+  animation: blink 1s ease-in-out infinite;
+}
+
+body.break-mode {
+  background-color: #1f1f1f;
+}
+
+body.break-mode .timer {
+  opacity: 100%;
+}
