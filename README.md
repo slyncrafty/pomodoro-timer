@@ -4,7 +4,7 @@ A simple pomodoro timer customizable, persistent focus timer built with vanilla 
 
 ## Try my pomodoro-timer [here](https://slyncrafty.github.io/pomodoro-timer/)
 
-![Timer image](https://github.com/slyncrafty/slyncrafty.github.io/blob/main/images/pic06.png)
+![Timer image](https://github.com/slyncrafty/slyncrafty.github.io/blob/main/images/pic05.png)
 
 ## How it's Made:
 
